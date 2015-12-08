@@ -21,7 +21,7 @@ class CustomAuthUtility {
         $request.headers(array("X-WSSE" => $this->generateWSSEHeader(self::$username, self::$apiToken)));
     }
 
-    private function generateWSSEHeader($username, $password)
+    private function generateWSSEHeader($strUsername, $strPassword)
     {
         $strNonce = sha1(uniqid(null, true).time());
         $objTimestamp = new \DateTime();
