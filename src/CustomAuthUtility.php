@@ -8,17 +8,29 @@
 namespace MagicTelecomAPILib;
 
 class CustomAuthUtility {
+
+    public static $username = 'admin@magictelecom.com';
+    public static $apiToken = 'thisismysupperduppersecrettoken';
+
     /**
     * Appends the necessary Custom Authentication credentials for making this authorized call
     * @param HttpRequest $request The out going request to access the resource
     */
     public static function appendCustomAuthParams($request)
     {
-        // TODO: Add your custom authentication here
-		// The following properties are available to use
-		//     Configuration::$xWSSE
-		// 
-		// ie. Add a header through:
-		//     $request.headers(array("key" => "value"));
+        $request.headers(array("X-WSSE" => $this->generateWSSEHeader(self::$username, self::$apiToken)));
+    }
+
+    private function generateWSSEHeader($username, $password)
+    {
+        $strNonce = sha1(uniqid(null, true).time());
+        $objTimestamp = new \DateTime();
+        $strTimestamp = $objTimestamp->format(\DateTime::ATOM);
+
+        $strDigest = base64_encode(sha1($strNonce.$strTimestamp.$strPassword, true));
+
+        $strHeader = 'UsernameToken Username="'.$strUsername.'", PasswordDigest="'.$strDigest.'", Nonce="'.$strNonce.'", Created="'.$strTimestamp.'"';
+
+        return $strHeader;
     }
 }

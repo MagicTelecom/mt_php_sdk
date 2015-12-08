@@ -11,8 +11,4 @@ class Configuration {
     //The base Uri for API calls
     public static $BASEURI = 'http://bundles.magictelecom.dev/app_dev.php';
 
-    //X-WSSE header
-    //TODO: Replace the $xWSSE with an appropriate value
-    public static $xWSSE = 'TODO: Replace';
-
 }

@@ -13,23 +13,6 @@ use MagicTelecomAPILib\Configuration;
 use MagicTelecomAPILib\CustomAuthUtility;
 use Unirest\Unirest;
 class UsersController {
-
-    /* private fields for configuration */
-
-    /**
-     * X-WSSE header 
-     * @var string
-     */
-    private $xWSSE;
-
-    /**
-     * Constructor with authentication and configuration parameters
-     */
-    function __construct($xWSSE)
-    {
-        $this->xWSSE = $xWSSE ? $xWSSE : Configuration::$xWSSE;
-    }
-
     /**
      * Allow clients to test authentication.
      * @return mixed response from the API call*/
@@ -47,8 +30,7 @@ class UsersController {
         //prepare headers
         $headers = array (
             'user-agent'    => 'APIMATIC 2.0',
-            'Accept'        => 'application/json',
-            'X-WSSE' => $this->xWSSE
+            'Accept'        => 'application/json'
         );
 
         //prepare API request
