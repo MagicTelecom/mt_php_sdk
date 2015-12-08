@@ -1,0 +1,31 @@
+/composer.phar
+
+#Ignore temp files created by text editors
+*~
+*#
+
+#eclipse project files can be ignored.
+.project
+.settings/
+.buildpath
+#end of eclipse project files
+
+#Ignore c++ .o
+*.o
+
+#VIM Swap files
+*.sw?
+
+#Ignore netbeans
+*nbproject*
+
+# Arcanst files
+.arc/
+.arcconfig
+
+# Sublime project and workspace files
+*.sublime-*
+
+#PhpStorm
+.idea*
+
