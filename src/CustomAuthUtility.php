@@ -18,10 +18,15 @@ class CustomAuthUtility {
     */
     public static function appendCustomAuthParams($request)
     {
-        $request.headers(array("X-WSSE" => $this->generateWSSEHeader(self::$username, self::$apiToken)));
+        $request->__set('headers', array(
+            "X-WSSE"        => self::generateWSSEHeader(self::$username, self::$apiToken),
+            "HTTP_ACCEPT"   => "application/json",
+            "CONTENT_TYPE"  => "application/json",
+            "ACCEPT"        => "application/json",
+        ));
     }
 
-    private function generateWSSEHeader($strUsername, $strPassword)
+     public static function generateWSSEHeader($strUsername, $strPassword)
     {
         $strNonce = sha1(uniqid(null, true).time());
         $objTimestamp = new \DateTime();
