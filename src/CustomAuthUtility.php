@@ -26,7 +26,7 @@ class CustomAuthUtility {
         ));
     }
 
-     public static function generateWSSEHeader($strUsername, $strPassword)
+    public static function generateWSSEHeader($strUsername, $strPassword)
     {
         $strNonce = sha1(uniqid(null, true).time());
         $objTimestamp = new \DateTime();
