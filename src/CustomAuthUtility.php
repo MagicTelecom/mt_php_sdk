@@ -18,12 +18,12 @@ class CustomAuthUtility {
     */
     public static function appendCustomAuthParams($request)
     {
-        $request->__set('headers', array(
-            "X-WSSE"        => self::generateWSSEHeader(self::$username, self::$apiToken),
-            "HTTP_ACCEPT"   => "application/json",
-            "CONTENT_TYPE"  => "application/json",
-            "ACCEPT"        => "application/json",
-        ));
+        $arrHeaders = $request->__get('headers');
+        $arrAuthHeader = array("X-WSSE" => self::generateWSSEHeader(self::$username, self::$apiToken));
+        
+        $arrHeaders = array_merge($arrHeaders, $arrAuthHeader);
+        
+    	$request->__set('headers', $arrHeaders);
     }
 
     public static function generateWSSEHeader($strUsername, $strPassword)
