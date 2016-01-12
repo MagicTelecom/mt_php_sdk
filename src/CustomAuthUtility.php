@@ -7,10 +7,9 @@
 
 namespace MagicTelecomAPILib;
 
-class CustomAuthUtility {
+use MagicTelecomAPILib\Configuration;
 
-    public static $username = 'admin@magictelecom.com';
-    public static $apiToken = 'thisismysupperduppersecrettoken';
+class CustomAuthUtility {
 
     /**
     * Appends the necessary Custom Authentication credentials for making this authorized call
@@ -19,7 +18,7 @@ class CustomAuthUtility {
     public static function appendCustomAuthParams($request)
     {
         $arrHeaders = $request->__get('headers');
-        $arrAuthHeader = array("X-WSSE" => self::generateWSSEHeader(self::$username, self::$apiToken));
+        $arrAuthHeader = array("X-WSSE" => self::generateWSSEHeader(Configuration::$USERNAME, Configuration::$APITOKEN));
         
         $arrHeaders = array_merge($arrHeaders, $arrAuthHeader);
         
