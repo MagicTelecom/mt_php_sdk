@@ -110,7 +110,7 @@ class TrunkItem extends Item implements JsonSerializable {
         $json['sip_uri']      = $this->sipUri;
         $json['attributes']   = $this->attributes;
         $json['_routing']     = $this->routing;
-        $json = array_merge($json, parent::to_json());
+        $json = array_merge($json, parent::jsonSerialize());
         return $json;
     }
 }

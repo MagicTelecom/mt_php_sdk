@@ -9,46 +9,38 @@ namespace MagicTelecomAPILib\Models;
 
 use JsonSerializable;
 
-class DidItem extends Item implements JsonSerializable {
+class Routing implements JsonSerializable {
     /**
      * TODO: Write general description for this property
-     * @param string $phoneNumber public property
+     * @param string $logic public property
      */
-    protected $phoneNumber;
+    protected $logic;
 
     /**
      * TODO: Write general description for this property
-     * @param int $trunkId public property
+     * @param array $endpoints public property
      */
-    protected $trunkId;
+    protected $endpoints;
 
     /**
      * TODO: Write general description for this property
-     * @param string $didTypeHandle public property
+     * @param string $sipUser public property
      */
-    protected $didTypeHandle;
-
-    /**
-     * TODO: Write general description for this property
-     * @param CallerLocation|null $callerLocation public property
-     */
-    protected $callerLocation;
+    protected $sipUser;
 
     /**
      * Constructor to set initial or default values of member properties
-	 * @param   string            $phoneNumber        Initialization value for the property $this->phoneNumber     
-	 * @param   int               $trunkId            Initialization value for the property $this->trunkId         
-	 * @param   string            $didTypeHandle      Initialization value for the property $this->didTypeHandle   
-	 * @param   CallerLocation|null   $callerLocation     Initialization value for the property $this->callerLocation  
+	 * @param   string            $logic       Initialization value for the property $this->logic    
+	 * @param   array             $endpoints   Initialization value for the property $this->endpoints
+	 * @param   string            $sipUser     Initialization value for the property $this->sipUser  
      */
     public function __construct()
     {
-        if(4 == func_num_args())
+        if(3 == func_num_args())
         {
-            $this->phoneNumber      = func_get_arg(0);
-            $this->trunkId          = func_get_arg(1);
-            $this->didTypeHandle    = func_get_arg(2);
-            $this->callerLocation   = func_get_arg(3);
+            $this->logic     = func_get_arg(0);
+            $this->endpoints = func_get_arg(1);
+            $this->sipUser   = func_get_arg(2);
         }
     }
 
@@ -97,11 +89,9 @@ class DidItem extends Item implements JsonSerializable {
     public function jsonSerialize()
     {
         $json = array();
-        $json['phone_number']     = $this->phoneNumber;
-        $json['trunk_id']         = $this->trunkId;
-        $json['did_type_handle']  = $this->didTypeHandle;
-        $json['_caller_location'] = $this->callerLocation;
-        $json = array_merge($json, parent::jsonSerialize());
+        $json['logic']     = $this->logic;
+        $json['endpoints'] = $this->endpoints;
+        $json['sip_user']  = $this->sipUser;
         return $json;
     }
 }

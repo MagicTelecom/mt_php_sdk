@@ -119,7 +119,7 @@ class LocationItem extends Item implements JsonSerializable {
         $json['did_type_handle']  = $this->didTypeHandle;
         $json['trunk_id']         = $this->trunkId;
         $json['_caller_location'] = $this->callerLocation;
-        $json = array_merge($json, parent::to_json());
+        $json = array_merge($json, parent::jsonSerialize());
         return $json;
     }
 }
