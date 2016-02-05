@@ -157,7 +157,7 @@ class DidsProductsController {
 
         //validate and preprocess url
         $queryUrl = APIHelper::cleanUrl($queryBuilder);
-
+		//var_dump($queryUrl);die();
         //prepare headers
         $headers = array (
             'user-agent'    => 'APIMATIC 2.0',
