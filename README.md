@@ -23,6 +23,13 @@ For using this SDK do the following:
        context menu command "Instal (dev)".
     3. Import classes from your file in your code where needed for example,
            use MagicTelecomAPILib\Controllers\UsersController;
-   
-        
     4. You can now instantiate controllers and call the respective methods.
+
+Magic SDK examples
+==================
+
+## 1.  Create a cart
+
+
+
+
