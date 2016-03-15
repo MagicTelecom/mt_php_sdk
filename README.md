@@ -28,8 +28,153 @@ For using this SDK do the following:
 Magic SDK examples
 ==================
 
-## 1.  Create a cart
+## 1. Create a cart
 
+```
+try {
 
+    // Create an AccountsController for account actions like:
+    // create a cart, create cart items, checkout cart
+    $objController = new AccountsController();
 
+    // Create Cart for an account (997766554)
+    $objCart = $objController->createCarts("997766554");
 
+    // Getting cart id
+    $intCartId = $objCart->cart_id;
+    …
+    
+} catch (APIException $e) {
+    …
+}
+```
+
+## 2.  Create cart items
+###### Creating a trunk item
+
+```
+try {
+    ...
+
+    // Create routing object        
+    $objRouting = new Routing("load-balanced", 
+                                array(new Endpoint("108.188.149.100", "maxChannels=100")), 
+                                "Sip_user_1"
+                             );
+
+    // Create Trunk Item
+    $objTrunk = new TrunkItem(10, "WORLD_WIDE", "108.188.149.121", "sms,fax",  $objRouting);
+
+    // Set the item type ("TRUNK", "LOCATION", "DID")
+    $objTrunk->__set("itemType", "TRUNK");
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+###### Create Location Item
+
+```
+try {
+    ...
+
+    // Create a caller location
+    $objCallerLocation = new CallerLocation(
+                                    "John Smith", 
+                                    "123 Street Name", 
+                                    "Orlando", 
+                                    "FL", 
+                                    "32819", 
+                                    "UNIT", 
+                                    "123", 
+                                    "US"
+                                 );
+
+    // Create Location Item for the trunk id 23
+    $objLocation = new LocationItem("ORLANDO__407___FL", 3, "sms,fax", "STANDARD", 23, objCallerLocation);
+
+    // Setting the item type
+    $objLocation->__set("itemType", "LOCATION");
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+###### Create Did Item
+
+```
+try {
+    ...
+
+    // Create a caller location
+    $objCallerLocation = new CallerLocation(
+                                    "John Smith", 
+                                    "123 Street Name", 
+                                    "Orlando", 
+                                    "FL", 
+                                    "32819", 
+                                    "UNIT", 
+                                    "123", 
+                                    "US"
+                                 );
+
+    // Creating a Did Item for trunk id 5
+    $objDid = new DidItem("14701234567", 5, "STANDARD", $objCallerLocation);
+    $objDid->__set("itemType", "DID");
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+# 3. Add an Item to cart
+
+```
+try {
+
+    // Create an AccountsController for account actions like:
+    // create a cart, add cart items, checkout cart
+    $objController = new AccountsController();
+
+    // Create a item like the examples before
+    // Could be an TrunkItem, LocationItem or DidItem
+    $objTrunk = …
+
+    //Create an form item
+    $objForm = new ItemForm($objTrunk);
+
+    // Add the item to the cart 3
+    $response = $objController->createItems("997766554", 3, $objForm);
+
+    // Get Item id from the response
+    $intItemId = response->item_id;
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+###### Full response (Trunk Item) example
+
+```
+object(stdClass)#15 (6) {
+  ["item_id"]=>
+  int(4)
+  ["channels"]=>
+  int(10)
+  ["sip_uri"]=>
+  string(15) "108.188.149.125"
+  ["attributes"]=>
+  string(7) "sms,fax"
+  ["_routing"]=>
+  string(115) "{"sip_user":"sip_user_1","logic":"load-balanced","endpoints":[{"uri":"108.188.149.100","attrs":"maxChannels=100"}]}"
+  ["item_type"]=>
+  string(5) "TRUNK"
+}
+```
