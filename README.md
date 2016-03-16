@@ -30,7 +30,7 @@ Magic SDK examples
 
 ## 1. Create a cart
 
-```
+```php
 try {
 
     // Create an AccountsController for account actions like:
@@ -50,9 +50,9 @@ try {
 ```
 
 ## 2.  Create cart items
-###### Creating a trunk item
+#### Creating a trunk item
 
-```
+```php
 try {
     ...
 
@@ -74,9 +74,9 @@ try {
 }
 ```
 
-###### Create Location Item
+#### Create Location Item
 
-```
+```php
 try {
     ...
 
@@ -104,9 +104,9 @@ try {
 }
 ```
 
-###### Create Did Item
+#### Create Did Item
 
-```
+```php
 try {
     ...
 
@@ -132,9 +132,9 @@ try {
 }
 ```
 
-# 3. Add an Item to cart
+## 3. Add an Item to cart
 
-```
+```php
 try {
 
     // Create an AccountsController for account actions like:
@@ -160,9 +160,9 @@ try {
 }
 ```
 
-###### Full response (Trunk Item) example
+#### Full response (Trunk Item) example
 
-```
+```php
 object(stdClass)#15 (6) {
   ["item_id"]=>
   int(4)
@@ -180,9 +180,9 @@ object(stdClass)#15 (6) {
 }
 ```
 
-# 4. Checkout a Cart
+## 4. Checkout a Cart
 
-```
+```php
 try {
     ...
 
@@ -207,9 +207,9 @@ try {
 }
 ```
 
-###### Full response (Checkout Cart) example
+#### Full response (Checkout Cart) example
 
-```
+```php
 object(stdClass)#17 (5) {
   ["external_order_reference"]=>
   string(28) "1234567899000dfhdfhdf1234eee"
