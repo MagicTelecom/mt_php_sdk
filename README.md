@@ -32,15 +32,14 @@ Magic SDK examples
 
 ```php
 try {
+    ...
 
     // Create an AccountsController for account actions like:
-    // create a cart, create cart items, checkout cart
+    // create an account, a cart, cart items, checkout cart and so on
     $objController = new AccountsController();
 
-    // Get accounts
+    // Get the list of accounts
     objResponse = $objController->getAccounts();
-
-    // Getting cart id
     $arrAccount = objResponse->data->results;
     …
     
@@ -53,17 +52,15 @@ You can get a limit result using parameters like page, limit, and filters. Take 
 
 ```php
 try {
+    ...
 
-    // Create an AccountsController for account actions like:
-    // create a cart, create cart items, checkout cart
+    // Create an AccountsController
     $objController = new AccountsController();
 
-    // Get accounts using pagination and filters
+    // Get a list of  accounts using pagination and filters
     // We are going to limit to first five elements with some requirements like firstname and email
     // The filters can be "number, email, contact_number, firstname, lastname"
     objResponse = $objController->getAccounts(1, 5 "firstname::John|lastname::Doe");
-
-    // Getting cart id
     $arrAccount = objResponse->data->results;
     …
     
@@ -76,13 +73,13 @@ try {
 
 ```php
 try {
+    ...
 
-    // Create an AccountsController for account actions like:
-    // create a cart, create cart items, checkout cart
+    // Create an AccountsController
     $objController = new AccountsController();
 
     // Create an account "99674698002" with roles "USER"
-    $objAccount = new Account("99674698002", array("USER"), "johnsmith2@test.com", "14079876543", "John", "Smith2");
+    $objAccount = new Account("99674698002", array("USER"), "john@example.com", "14079876543", "John", "Smith");
     $objAccountForm = new AccountForm($objAccount);
     
     $objResponse = $objController->createAccount($objAccountForm);
@@ -94,16 +91,100 @@ try {
 }
 ```
 
-## 3. Create a cart
+This is a full response example.
+
+```
+class stdClass#13 (5) {
+  public $number =>
+  string(11) "99674698003"
+  public $email =>
+  string(19) "john@example.com"
+  public $contact_number =>
+  string(10) "4079876543"
+  public $firstname =>
+  string(4) "John"
+  public $lastname =>
+  string(6) "Smith"
+}
+```
+
+## 3. Get an account
 
 ```php
 try {
-
-    // Create an AccountsController for account actions like:
-    // create a cart, create cart items, checkout cart
+    ...
+    
+    // Create an AccountsController
     $objController = new AccountsController();
 
-    // Create Cart for an account (997766554)
+    // Get account "99674698003"
+    $objResponse = $objController->getAccount("99674698003");
+    $objAccount = $objResponse->data;
+    …
+    
+} catch (APIException $e) {
+    echo "Can't accomplish this action, exception: [{$e->getMessage()}]";
+}
+```
+If the account doesn't exist, you gonna get this message:
+`Can't accomplish this action, exception: [Resource not found]`
+
+## 4. Update an account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Create the account to update
+    $objAccount = new Account("99674698004", array("USER"), "johns_new@test.com", "4079876543", "John", "New");
+    $objAccountForm = new AccountForm($objAccount);
+    
+    // Update account "99674698002"
+    $objController->updateAccount("99674698002", $objAccountForm);
+    
+    // Get the account with the new account value
+    $objResponse = $objController->getAccount("99674698004");
+    …
+    
+} catch (APIException $e) {
+    echo "Can't accomplish this action, exception: [{$e->getMessage()}]";
+}
+```
+If the account doesn't exist, you gonna get this message:
+`Can't accomplish this action, exception: [Resource not found]`
+
+## 5. Delete an account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get account "99674698003"
+    $objResponse = $objController->getAccount("99674698003");
+    $objAccount = $objResponse->data;
+    …
+    
+} catch (APIException $e) {
+    …
+}
+```
+
+## 6. Create a cart
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Create Cart for account (997766554)
     $objCart = $objController->createCarts("997766554");
 
     // Getting cart id
@@ -115,7 +196,7 @@ try {
 }
 ```
 
-## 4.  Create cart items
+## 7.  Create cart items
 #### Creating a trunk item
 
 ```php
@@ -198,7 +279,7 @@ try {
 }
 ```
 
-## 5. Add an Item to cart
+## 8. Add an Item to cart
 
 ```php
 try {
@@ -226,9 +307,9 @@ try {
 }
 ```
 
-#### Full response (Trunk Item) example
+This is the full response (Trunk Item) example
 
-```php
+```
 object(stdClass)#15 (6) {
   ["item_id"]=>
   int(4)
@@ -246,7 +327,7 @@ object(stdClass)#15 (6) {
 }
 ```
 
-## 6. Checkout a Cart
+## 9. Checkout a Cart
 
 ```php
 try {
@@ -273,9 +354,9 @@ try {
 }
 ```
 
-#### Full response (Checkout Cart) example
+This is the full response (Checkout Cart) example
 
-```php
+```
 object(stdClass)#17 (5) {
   ["external_order_reference"]=>
   string(28) "1234567899000dfhdfhdf1234eee"
