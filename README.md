@@ -72,7 +72,29 @@ try {
 }
 ```
 
-## 2. Create a cart
+## 2. Create an account
+
+```php
+try {
+
+    // Create an AccountsController for account actions like:
+    // create a cart, create cart items, checkout cart
+    $objController = new AccountsController();
+
+    // Create an account "99674698002" with roles "USER"
+    $objAccount = new Account("99674698002", array("USER"), "johnsmith2@test.com", "14079876543", "John", "Smith2");
+    $objAccountForm = new AccountForm($objAccount);
+    
+    $objResponse = $objController->createAccount($objAccountForm);
+    $strAccount = $objResponse->number;
+    …
+    
+} catch (APIException $e) {
+    …
+}
+```
+
+## 3. Create a cart
 
 ```php
 try {
@@ -93,7 +115,7 @@ try {
 }
 ```
 
-## 3.  Create cart items
+## 4.  Create cart items
 #### Creating a trunk item
 
 ```php
@@ -176,7 +198,7 @@ try {
 }
 ```
 
-## 4. Add an Item to cart
+## 5. Add an Item to cart
 
 ```php
 try {
@@ -224,7 +246,7 @@ object(stdClass)#15 (6) {
 }
 ```
 
-## 5. Checkout a Cart
+## 6. Checkout a Cart
 
 ```php
 try {
