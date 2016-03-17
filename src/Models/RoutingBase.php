@@ -9,54 +9,30 @@ namespace MagicTelecomAPILib\Models;
 
 use JsonSerializable;
 
-class TelephoneNumber implements JsonSerializable {
+class RoutingBase implements JsonSerializable {
     /**
      * TODO: Write general description for this property
-     * @param int $trunkId public property
+     * @param string $logic public property
      */
-    protected $trunkId;
+    protected $logic;
 
     /**
      * TODO: Write general description for this property
-     * @param string $sipEndPointUri public property
+     * @param array $endpoints public property
      */
-    protected $sipEndPointUri;
-
-    /**
-     * TODO: Write general description for this property
-     * @param string $alias public property
-     */
-    protected $alias;
-
-    /**
-     * TODO: Write general description for this property
-     * @param int $channels public property
-     */
-    protected $channels;
-
-    /**
-     * TODO: Write general description for this property
-     * @param RoutingBase $routing public property
-     */
-    protected $routing;
+    protected $endpoints;
 
     /**
      * Constructor to set initial or default values of member properties
-	 * @param   int               $trunkId             Initialization value for the property $this->trunkId          
-	 * @param   string            $sipEndPointUri      Initialization value for the property $this->sipEndPointUri   
-	 * @param   string            $alias               Initialization value for the property $this->alias            
-	 * @param   int               $channels            Initialization value for the property $this->channels         
-	 * @param   RoutingBase       $routing             Initialization value for the property $this->routing          
+	 * @param   string            $logic       Initialization value for the property $this->logic    
+	 * @param   array             $endpoints   Initialization value for the property $this->endpoints
      */
     public function __construct()
     {
-        if(5 == func_num_args())
+        if(2 == func_num_args())
         {
-            $this->trunkId           = func_get_arg(0);
-            $this->sipEndPointUri    = func_get_arg(1);
-            $this->alias             = func_get_arg(2);
-            $this->channels          = func_get_arg(3);
-            $this->routing           = func_get_arg(4);
+            $this->logic     = func_get_arg(0);
+            $this->endpoints = func_get_arg(1);
         }
     }
 
@@ -105,11 +81,8 @@ class TelephoneNumber implements JsonSerializable {
     public function jsonSerialize()
     {
         $json = array();
-        $json['trunk_id']          = $this->trunkId;
-        $json['sip_end_point_uri'] = $this->sipEndPointUri;
-        $json['alias']             = $this->alias;
-        $json['channels']          = $this->channels;
-        $json['_routing']          = $this->routing;
+        $json['logic']     = $this->logic;
+        $json['endpoints'] = $this->endpoints;
         return $json;
     }
 }

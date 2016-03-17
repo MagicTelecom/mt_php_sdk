@@ -9,22 +9,22 @@ namespace MagicTelecomAPILib\Models;
 
 use JsonSerializable;
 
-class Routing extends RoutingBase implements JsonSerializable {
+class TrunkForm implements JsonSerializable {
     /**
      * TODO: Write general description for this property
-     * @param string $sipUser public property
+     * @param Trunk $trunk public property
      */
-    protected $sipUser;
+    protected $trunk;
 
     /**
      * Constructor to set initial or default values of member properties
-	 * @param   string            $sipUser    Initialization value for the property $this->sipUser 
+	 * @param   Trunk             $trunk   Initialization value for the property $this->trunk
      */
     public function __construct()
     {
         if(1 == func_num_args())
         {
-            $this->sipUser  = func_get_arg(0);
+            $this->trunk = func_get_arg(0);
         }
     }
 
@@ -73,8 +73,7 @@ class Routing extends RoutingBase implements JsonSerializable {
     public function jsonSerialize()
     {
         $json = array();
-        $json['sip_user'] = $this->sipUser;
-        $json = array_merge($json, parent::jsonSerialize());
+        $json['trunk'] = $this->trunk;
         return $json;
     }
 }
