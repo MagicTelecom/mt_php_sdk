@@ -28,7 +28,51 @@ For using this SDK do the following:
 Magic SDK examples
 ==================
 
-## 1. Create a cart
+## 1. Get all accounts
+
+```php
+try {
+
+    // Create an AccountsController for account actions like:
+    // create a cart, create cart items, checkout cart
+    $objController = new AccountsController();
+
+    // Get accounts
+    objResponse = $objController->getAccounts();
+
+    // Getting cart id
+    $arrAccount = objResponse->data->results;
+    …
+    
+} catch (APIException $e) {
+    …
+}
+```
+
+You can get a limit result using parameters like page, limit, and filters. Take a look to the API doc. Here you have an example.
+
+```php
+try {
+
+    // Create an AccountsController for account actions like:
+    // create a cart, create cart items, checkout cart
+    $objController = new AccountsController();
+
+    // Get accounts using pagination and filters
+    // We are going to limit to first five elements with some requirements like firstname and email
+    // The filters can be "number, email, contact_number, firstname, lastname"
+    objResponse = $objController->getAccounts(1, 5 "firstname::John|lastname::Doe");
+
+    // Getting cart id
+    $arrAccount = objResponse->data->results;
+    …
+    
+} catch (APIException $e) {
+    …
+}
+```
+
+## 2. Create a cart
 
 ```php
 try {
@@ -49,7 +93,7 @@ try {
 }
 ```
 
-## 2.  Create cart items
+## 3.  Create cart items
 #### Creating a trunk item
 
 ```php
@@ -132,7 +176,7 @@ try {
 }
 ```
 
-## 3. Add an Item to cart
+## 4. Add an Item to cart
 
 ```php
 try {
@@ -180,7 +224,7 @@ object(stdClass)#15 (6) {
 }
 ```
 
-## 4. Checkout a Cart
+## 5. Checkout a Cart
 
 ```php
 try {
