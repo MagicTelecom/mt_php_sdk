@@ -165,9 +165,8 @@ try {
     // Create an AccountsController
     $objController = new AccountsController();
 
-    // Get account "99674698003"
-    $objResponse = $objController->getAccount("99674698003");
-    $objAccount = $objResponse->data;
+    // Delete account "99674698003"
+    $objController->deleteAccount("99674698003");
     …
     
 } catch (APIException $e) {
