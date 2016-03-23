@@ -174,6 +174,42 @@ try {
 }
 ```
 
+## 6. Get account access tokens
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get account "997766554" access tokens
+    $objResponse = $objController->getAccessTokens("997766554");
+    $arrToken = $objResponse->data->results;
+    
+    // Get the first access token
+    if(isset($arrToken[0]))
+    {
+        $strFirstToken = $arrToken[0]->token;
+    }
+    …
+    
+} catch (APIException $e) {
+    …
+}
+```
+
+## 7. Create account access tokens
+
+```php
+try {
+    ...
+    
+} catch (APIException $e) {
+    …
+}
+```
+
 ## 6. Create a cart
 
 ```php
@@ -183,7 +219,7 @@ try {
     // Create an AccountsController
     $objController = new AccountsController();
 
-    // Create Cart for account (997766554)
+    // Create Cart for account "997766554"
     $objCart = $objController->createCarts("997766554");
 
     // Getting cart id
