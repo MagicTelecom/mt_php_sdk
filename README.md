@@ -4,7 +4,11 @@ MagicTelecomAPILib
 INSTALATION VIA COMPOSER
 ========================
 
+```composer require apimatic/unirest-php dev-master```
+
 ```composer require magictelecom/magictelecomapi```
+
+
 
 How To Configure:
 =================
