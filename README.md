@@ -4,7 +4,7 @@ MagicTelecomAPILib
 INSTALATION VIA COMPOSER
 ========================
 
-composer require magictelecom/magictelecomapi
+```composer require magictelecom/magictelecomapi```
 
 How To Configure:
 =================
