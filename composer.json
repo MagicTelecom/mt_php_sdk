@@ -7,10 +7,10 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Magic Telecom",
-            "email": "dev@magictelecom.com",
+            "name": "Alain Hernandez Lopez",
+            "email": "alain@voxbeam.com"
             "homepage": "https://www.magictelecom.com/",
-            "role": "Company"
+            "role": "Software Architect"
         }
     ],
     "repositories": [
@@ -26,14 +26,17 @@
         "ext-mbstring": "*",
         "apimatic/unirest-php": "dev-master"
     },
+    "autoload": {
+        "psr-4": {
+            "MagicTelecomAPILib\\": "src/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
         }
     },
-    "autoload": {
-        "psr-4": {
-            "MagicTelecomAPILib\\": "src/"
-        }
+    "support": {
+        "issues": "https://github.com/Localphone/DidBundle/issues"
     }
 }
