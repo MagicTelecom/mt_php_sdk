@@ -39,8 +39,8 @@ try {
     $objController = new AccountsController();
 
     // Get the list of accounts
-    objResponse = $objController->getAccounts();
-    $arrAccount = objResponse->data->results;
+    $objResponse = $objController->getAccounts();
+    $arrAccount = $objResponse->data->results;
     
     ...
     
@@ -61,8 +61,8 @@ try {
     // Get a list of  accounts using pagination and filters
     // We are going to limit to first five elements with some requirements like firstname and email
     // The filters can be "number, email, contact_number, firstname, lastname"
-    objResponse = $objController->getAccounts(1, 5 "firstname::John|lastname::Doe");
-    $arrAccount = objResponse->data->results;
+    $objResponse = $objController->getAccounts(1, 5 "firstname::John|lastname::Doe");
+    $arrAccount = $objResponse->data->results;
     
     ...
     
