@@ -1,16 +1,16 @@
 {
-    "name": "apimatic/magictelecomapi",
+    "name": "matictelecom/magictelecomapi",
     "type": "library",
     "description": "Magic Telecom API",
     "keywords": ["Magic Telecom API","API","SDK"],
-    "homepage": "https://apimatic.io",
+    "homepage": "https://www.magictelecom.com/",
     "license": "MIT",
     "authors": [
         {
-            "name": "Zeeshan @ APIMATIC",
-            "email": "zeeshan@apimatic.io",
-            "homepage": "https://github.com/apimatic",
-            "role": "Developer"
+            "name": "Magic Telecom",
+            "email": "dev@magictelecom.com",
+            "homepage": "https://www.magictelecom.com/",
+            "role": "Company"
         }
     ],
     "repositories": [
