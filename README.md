@@ -298,6 +298,82 @@ try {
 }
 ```
 
+## 11. Get the list of caller locations for the specific account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Get the caller locations list
+    $objResponse = $objController->getCallerLocations("997766554");
+    $arrCallerLocation = $objResponse->data->results;
+    
+    // Get the amount of elements
+    $intTotal = $objResponse->data->total;
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 12. Create a caller locations for the specific account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Create a caller location
+    // Take care unit_type must be "unit, suit or apt"
+    $objCallerLocation = new CallerLocation(
+                                    "John Smith",
+                                    "123 Street Name",
+                                    "Orlando",
+                                    "FL",
+                                    32819,
+                                    "Suit",
+                                    123,
+                                    "US"
+                                );
+    $objForm = new CallerLocationForm($objCallerLocation);
+    
+    // Save the caller location
+    $objResponse = $objController->createCallerLocations("997766554", $objForm);
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 13. Delete caller locations for a specific account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Delete caller locations
+    $objResponse = $objController->deleteCallerLocations("997766554");
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+
+
+
 ## 6. Create a cart
 
 ```php
