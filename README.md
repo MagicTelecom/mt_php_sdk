@@ -270,7 +270,7 @@ try {
     $objForm = new TokenForm($objAccessToken);
     
     // Updating the access token "b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3" for account "997766554" as not active
-    $objResponse = $objController->updateAccessToken("997766554", 'b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3', $objForm);
+    $objController->updateAccessToken("997766554", 'b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3', $objForm);
     
     ...
     
@@ -289,7 +289,7 @@ try {
     $objController = new AccountsController();
     
     // Delete access token with key "b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3" for account "997766554"
-    $objResponse = $objController->deleteAccessToken("997766554", 'b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3');
+    $objController->deleteAccessToken("997766554", 'b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3');
     
     ...
     
@@ -313,6 +313,7 @@ try {
     
     // Get the amount of elements
     $intTotal = $objResponse->data->total;
+    
     ...
     
 } catch (APIException $e) {
@@ -345,6 +346,7 @@ try {
     
     // Save the caller location
     $objResponse = $objController->createCallerLocations("997766554", $objForm);
+    
     ...
     
 } catch (APIException $e) {
@@ -362,7 +364,7 @@ try {
     $objController = new AccountsController();
     
     // Delete caller locations
-    $objResponse = $objController->deleteCallerLocations("997766554");
+    $objController->deleteCallerLocations("997766554");
     
     ...
     
@@ -371,7 +373,76 @@ try {
 }
 ```
 
+## 14. Get a caller locations for a specific account by Id
 
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Get a caller locations with id equal 7 for account "997766554"
+    $objResponse = $objController->getCallerLocationById("997766554", 7);
+    $objCallerLocation = $objResponse->data;
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 15. Update a caller locations for a specific account by Id
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Create the update caller location object 
+    $objCallerLocation = new CallerLocation(
+                                    "John Smith",
+                                    "125 Street Name",
+                                    "Orlando",
+                                    "FL",
+                                    32819,
+                                    "Apt",
+                                    125,
+                                    "US"
+                                );
+    $objForm = new CallerLocationForm($objCallerLocation);
+    
+    // Update the caller location with id equal 7
+    $objController->updateCallerLocationById("997766554", 7, $objForm);
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 16. Delete a caller locations for a specific account by Id
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Delete a caller locations with id equal 7 for account "997766554"
+    $objController->deleteCallerLocationById("997766554", 7);
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
 
 
 ## 6. Create a cart
