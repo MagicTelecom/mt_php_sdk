@@ -544,7 +544,7 @@ try {
 }
 ```
 
-## 7.  Create cart items
+## 22.  Create cart items
 #### Creating a trunk item
 
 ```php
@@ -627,18 +627,17 @@ try {
 }
 ```
 
-## 8. Add an Item to cart
+## 23. Add an Item to cart
 
 ```php
 try {
 
-    // Create an AccountsController for account actions like:
-    // create a cart, add cart items, checkout cart
+    // Create an AccountsController
     $objController = new AccountsController();
 
     // Create a item like the examples before
     // Could be an TrunkItem, LocationItem or DidItem
-    $objTrunk = …
+    $objTrunk = ...
 
     //Create an form item
     $objForm = new ItemForm($objTrunk);
@@ -675,7 +674,93 @@ object(stdClass)#15 (6) {
 }
 ```
 
-## 9. Checkout a Cart
+## 24. Get the cart items list
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the list of items from the cart 7 for account "997766554" using filter (page = 1) and (limit = 10) default values
+    $objResponse = $objController->getItems("997766554", 7);
+    $arrItem = $objResponse->data->results;
+    
+    // Get the list of items using filter (page = 2) and (limit = 5)
+    $objResponse = $objController->getItems("997766554", 7, 2, 5);
+    $arrItem = $objResponse->data->results;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 25. Delete the cart items list
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete the list of items from the cart 7 for account "997766554"
+    $objController->deleteItems("997766554", 7);
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 26. Get a cart item
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the items from the cart 7 for account "997766554" with id equal 9
+    $objResponse = $objController->getItem("997766554", 7, 9);
+    $objItem = $objResponse->data;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 27. Delete a cart item
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the items from the cart 7 for account "997766554" with id equal 9
+    $objResponse = $objController->getItem("997766554", 7, 9);
+    $objItem = $objResponse->data;
+    
+    // Check the item type ('TRUNK', 'DID' or 'LOCATION')
+    if($objItem->item_type == 'TRUNK')
+    {
+        // Delete the item with id equal 9 from the cart 7 for account "997766554"
+        $objController->deleteItem("997766554", 7, 9);
+    }
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 29. Checkout a Cart
 
 ```php
 try {
