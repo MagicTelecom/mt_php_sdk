@@ -760,7 +760,7 @@ try {
 }
 ```
 
-## 29. Checkout a Cart
+## 28. Checkout a Cart
 
 ```php
 try {
@@ -824,5 +824,91 @@ object(stdClass)#17 (5) {
   }
   ["account_number"]=>
   string(9) "997766554"
+}
+```
+
+## 29. Get the list of cdr request for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the list of cdr request for account "997766554" using filter (page = 1) and (limit = 10) default values
+    $objResponse = $objController->getCdrs("997766554");
+    $arrCDR = $objResponse->data->results;
+    
+    // Get the list of cdr request for account "997766554" using filter (page = 2) and (limit = 5)
+    $objResponse = $objController->getCdrs("997766554", 2, 5);
+    $arrCDR = $objResponse->data->results;
+    
+    // Get the list of cdr request for account "997766554" using filter (page = 1) and (limit = 2) and filter (service_type = "ORIGINATION")
+    $objResponse = $objController->getCdrs("997766554", 1, 2, "service_type::ORIGINATION");
+    $arrCDR = $objResponse->data->results;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 30. Create a cdr for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Create a cdr for account "997766554", user id 2 and service type "TERMINATION"
+    // Service type could be "ORIGINATION" or "TERMINATION"
+    $objCDR = new Cdrs("2", "TERMINATION", "2016-01-13", "2016-01-13");
+    $objForm = new CdrForm($objCDR);
+    
+    // Save cdr object
+    $objCDR = $objController->createCdrs("997766554", $objForm);
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 31. Delete the list of cdr request for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete the cdrs list for account "997766554"
+    $objController->deleteCdrs("997766554");
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 32. Delete a cdr for an account by id
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete the cdrs for account "997766554" with id 2
+    $objController->deleteCdrById("997766554", 2);
+    
+    ...
+
+} catch (APIException $e) {
+    ...
 }
 ```
