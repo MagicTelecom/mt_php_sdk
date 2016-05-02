@@ -464,7 +464,7 @@ try {
 }
 ```
 
-## 18. Create a cart
+## 18. Create a cart for a specific account
 
 ```php
 try {
@@ -505,7 +505,7 @@ try {
 }
 ```
 
-## 20. Get a cart by Id
+## 20. Get a cart for a specific account by Id
 
 ```php
 try {
@@ -525,7 +525,7 @@ try {
 }
 ```
 
-## 21. Delete a cart by Id
+## 21. Delete a cart for a specific account by Id
 
 ```php
 try {
