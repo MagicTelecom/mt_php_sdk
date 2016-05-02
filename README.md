@@ -298,7 +298,7 @@ try {
 }
 ```
 
-## 11. Get the list of caller locations for the specific account
+## 11. Get the list of caller locations for an account
 
 ```php
 try {
@@ -321,7 +321,7 @@ try {
 }
 ```
 
-## 12. Create a caller locations for the specific account
+## 12. Create a caller locations for an account
 
 ```php
 try {
@@ -354,7 +354,7 @@ try {
 }
 ```
 
-## 13. Delete caller locations for a specific account
+## 13. Delete caller locations for an account
 
 ```php
 try {
@@ -373,7 +373,7 @@ try {
 }
 ```
 
-## 14. Get a caller locations for a specific account by Id
+## 14. Get a caller locations for an account by Id
 
 ```php
 try {
@@ -393,7 +393,7 @@ try {
 }
 ```
 
-## 15. Update a caller locations for a specific account by Id
+## 15. Update a caller locations for an account by Id
 
 ```php
 try {
@@ -425,7 +425,7 @@ try {
 }
 ```
 
-## 16. Delete a caller locations for a specific account by Id
+## 16. Delete a caller locations for an account by Id
 
 ```php
 try {
@@ -444,7 +444,7 @@ try {
 }
 ```
 
-## 17. Get the cart list for an specific account
+## 17. Get the cart list for an account
 
 ```php
 try {
@@ -464,7 +464,7 @@ try {
 }
 ```
 
-## 18. Create a cart for a specific account
+## 18. Create a cart for an account
 
 ```php
 try {
@@ -505,7 +505,7 @@ try {
 }
 ```
 
-## 20. Get a cart for a specific account by Id
+## 20. Get a cart for an account by Id
 
 ```php
 try {
@@ -525,7 +525,7 @@ try {
 }
 ```
 
-## 21. Delete a cart for a specific account by Id
+## 21. Delete a cart for an account by Id
 
 ```php
 try {
