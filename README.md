@@ -444,8 +444,27 @@ try {
 }
 ```
 
+## 17. Get the cart list for an specific account
 
-## 6. Create a cart
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Get the car list for account "997766554"
+    $objResponse = $objController->getCarts("997766554");
+    $arrCart = $objResponse->data->results;
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 18. Create a cart
 
 ```php
 try {
@@ -459,10 +478,69 @@ try {
 
     // Getting cart id
     $intCartId = $objCart->cart_id;
-    …
+    
+    ...
     
 } catch (APIException $e) {
-    …
+    ...
+}
+```
+
+## 19. Delete all the cart for an account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete carts for account "997766554"
+    $objController->deleteCarts("997766554");
+
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 20. Get a cart by Id
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the cart for account "997766554" with id equal 3
+    $objResponse = $objController->getCart("997766554", 3);
+    $objCart = $objResponse->data;
+
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 21. Delete a cart by Id
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete a cart for account "997766554" with id equal 6
+    $objController->deleteCart("997766554", 6);
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
 }
 ```
 
