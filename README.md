@@ -843,7 +843,8 @@ try {
     $objResponse = $objController->getCdrs("997766554", 2, 5);
     $arrCDR = $objResponse->data->results;
     
-    // Get the list of cdr request for account "997766554" using filter (page = 1) and (limit = 2) and filter (service_type = "ORIGINATION")
+    // Get the list of cdr request for account "997766554" using filter (page = 1) and (limit = 2) 
+    // and filter (service_type = "ORIGINATION")
     $objResponse = $objController->getCdrs("997766554", 1, 2, "service_type::ORIGINATION");
     $arrCDR = $objResponse->data->results;
     
@@ -905,6 +906,109 @@ try {
 
     // Delete the cdrs for account "997766554" with id 2
     $objController->deleteCdrById("997766554", 2);
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 33. Get the list of numbers (Dids) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the Dids list for account "997766554" using filter (page = 1) and (limit = 10) default values
+    $objResponse = $objController->getDids("997766554");
+    $arrDid = $objResponse->data->results;
+    
+    // Get the Dids list for account "997766554" using filter (page = 1) and (limit = 5)
+    // and filter (region_handle::FL)
+    $objResponse = $objController->getDids("997766554", 1, 5, "region_handle::FL");
+    $arrDid = $objResponse->data->results;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 34. Delete the list of numbers (Dids) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete the Dids list for account "997766554"
+    $objController->deleteDids("997766554");
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 35. Get a telephone number (Did) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the Did for account "997766554" with number "13211234567"
+    $objResponse = $objController->getTelephoneNumber("997766554", "13211234567");
+    $objDid = $objResponse->data;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 36. Update a telephone numbers (Dids) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the Dids list for account "997766554" using filter (page = 1) and (limit = 10) default values
+    $objRouting = new RoutingBase(
+                               "load-balanced",
+                               array(new Endpoint("108.188.149.101", "maxChannels=10"))
+                               );
+    $objTelephoneNumber = new TelephoneNumber(4, "102.225.231.41", "My new did alias", 5, $objRouting);
+    $objTelephoneNumberForm = new TelephoneNumberForm($objTelephoneNumber);
+    $objController->updateTelephoneNumber("997766554", "13211234567", $objTelephoneNumberForm);
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 36. Delete a telephone numbers (Dids) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete Dids for account "997766554" with number "13211234567"
+    $objController->deleteTelephoneNumber("997766554", "13211234567");
     
     ...
 
