@@ -646,7 +646,7 @@ try {
     $response = $objController->createItems("997766554", 3, $objForm);
 
     // Get Item id from the response
-    $intItemId = response->item_id;
+    $intItemId = $response->item_id;
     ...
 
 } catch (APIException $e) {
