@@ -39,12 +39,13 @@ try {
     $objController = new AccountsController();
 
     // Get the list of accounts
-    objResponse = $objController->getAccounts();
-    $arrAccount = objResponse->data->results;
-    …
+    $objResponse = $objController->getAccounts();
+    $arrAccount = $objResponse->data->results;
+    
+    ...
     
 } catch (APIException $e) {
-    …
+    ...
 }
 ```
 
@@ -60,9 +61,10 @@ try {
     // Get a list of  accounts using pagination and filters
     // We are going to limit to first five elements with some requirements like firstname and email
     // The filters can be "number, email, contact_number, firstname, lastname"
-    objResponse = $objController->getAccounts(1, 5 "firstname::John|lastname::Doe");
-    $arrAccount = objResponse->data->results;
-    …
+    $objResponse = $objController->getAccounts(1, 5 "firstname::John|lastname::Doe");
+    $arrAccount = $objResponse->data->results;
+    
+    ...
     
 } catch (APIException $e) {
     …
@@ -84,10 +86,11 @@ try {
     
     $objResponse = $objController->createAccount($objAccountForm);
     $strAccount = $objResponse->number;
-    …
+    
+    ...
     
 } catch (APIException $e) {
-    …
+    ...
 }
 ```
 
@@ -120,7 +123,8 @@ try {
     // Get account "99674698003"
     $objResponse = $objController->getAccount("99674698003");
     $objAccount = $objResponse->data;
-    …
+    
+    ...
     
 } catch (APIException $e) {
     echo "Can't accomplish this action, exception: [{$e->getMessage()}]";
@@ -147,7 +151,8 @@ try {
     
     // Get the account with the new account value
     $objResponse = $objController->getAccount("99674698004");
-    …
+    
+    ...
     
 } catch (APIException $e) {
     echo "Can't accomplish this action, exception: [{$e->getMessage()}]";
@@ -167,10 +172,11 @@ try {
 
     // Delete account "99674698003"
     $objController->deleteAccount("99674698003");
-    …
+    
+    ...
     
 } catch (APIException $e) {
-    …
+    ...
 }
 ```
 
@@ -192,25 +198,273 @@ try {
     {
         $strFirstToken = $arrToken[0]->token;
     }
-    …
+    
+    ...
     
 } catch (APIException $e) {
-    …
+    ...
 }
 ```
 
-## 7. Create account access tokens
+## 7. Create account access tokens list
 
 ```php
 try {
     ...
     
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Create access token 
+    $objAccessToken = new Token(true);
+    $objForm = new TokenForm($objAccessToken);
+    
+    // Save the access token for account "997766554"
+    $objResponse = $objController->createAccessTokens("997766554", $objForm);
+    
+    // Get access token Key
+    $strKey = $objResponse->token;
+    
 } catch (APIException $e) {
-    …
+    ...
 }
 ```
 
-## 6. Create a cart
+## 8. Get an account access tokens
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Getting the access token "justatoken" for account "997766554"
+    $objResponse = $objController->getAccessToken("997766554", "justatoken");
+    $objToken = $objResponse->data;
+    
+    // Check if the token is active
+    if($objToken->is_active) 
+    {
+        ...
+    }
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 9. Update an account access tokens
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Fill a access token as not active
+    $objAccessToken = new Token(false);
+    $objForm = new TokenForm($objAccessToken);
+    
+    // Updating the access token "b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3" for account "997766554" as not active
+    $objController->updateAccessToken("997766554", 'b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3', $objForm);
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 10. Delete an account access tokens
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Delete access token with key "b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3" for account "997766554"
+    $objController->deleteAccessToken("997766554", 'b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3');
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 11. Get the list of caller locations for an account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Get the caller locations list
+    $objResponse = $objController->getCallerLocations("997766554");
+    $arrCallerLocation = $objResponse->data->results;
+    
+    // Get the amount of elements
+    $intTotal = $objResponse->data->total;
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 12. Create a caller locations for an account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Create a caller location
+    // Take care unit_type must be "unit, suit or apt"
+    $objCallerLocation = new CallerLocation(
+                                    "John Smith",
+                                    "123 Street Name",
+                                    "Orlando",
+                                    "FL",
+                                    32819,
+                                    "Suit",
+                                    123,
+                                    "US"
+                                );
+    $objForm = new CallerLocationForm($objCallerLocation);
+    
+    // Save the caller location
+    $objResponse = $objController->createCallerLocations("997766554", $objForm);
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 13. Delete caller locations for an account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Delete caller locations
+    $objController->deleteCallerLocations("997766554");
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 14. Get a caller locations for an account by Id
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Get a caller locations with id equal 7 for account "997766554"
+    $objResponse = $objController->getCallerLocationById("997766554", 7);
+    $objCallerLocation = $objResponse->data;
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 15. Update a caller locations for an account by Id
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Create the update caller location object 
+    $objCallerLocation = new CallerLocation(
+                                    "John Smith",
+                                    "125 Street Name",
+                                    "Orlando",
+                                    "FL",
+                                    32819,
+                                    "Apt",
+                                    125,
+                                    "US"
+                                );
+    $objForm = new CallerLocationForm($objCallerLocation);
+    
+    // Update the caller location with id equal 7
+    $objController->updateCallerLocationById("997766554", 7, $objForm);
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 16. Delete a caller locations for an account by Id
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Delete a caller locations with id equal 7 for account "997766554"
+    $objController->deleteCallerLocationById("997766554", 7);
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 17. Get the cart list for an account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+    
+    // Get the car list for account "997766554"
+    $objResponse = $objController->getCarts("997766554");
+    $arrCart = $objResponse->data->results;
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 18. Create a cart for an account
 
 ```php
 try {
@@ -224,14 +478,73 @@ try {
 
     // Getting cart id
     $intCartId = $objCart->cart_id;
-    …
+    
+    ...
     
 } catch (APIException $e) {
-    …
+    ...
 }
 ```
 
-## 7.  Create cart items
+## 19. Delete all the cart for an account
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete carts for account "997766554"
+    $objController->deleteCarts("997766554");
+
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 20. Get a cart for an account by Id
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the cart for account "997766554" with id equal 3
+    $objResponse = $objController->getCart("997766554", 3);
+    $objCart = $objResponse->data;
+
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 21. Delete a cart for an account by Id
+
+```php
+try {
+    ...
+    
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete a cart for account "997766554" with id equal 6
+    $objController->deleteCart("997766554", 6);
+    
+    ...
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 22.  Create cart items
 #### Creating a trunk item
 
 ```php
@@ -314,18 +627,17 @@ try {
 }
 ```
 
-## 8. Add an Item to cart
+## 23. Add an Item to cart
 
 ```php
 try {
 
-    // Create an AccountsController for account actions like:
-    // create a cart, add cart items, checkout cart
+    // Create an AccountsController
     $objController = new AccountsController();
 
     // Create a item like the examples before
     // Could be an TrunkItem, LocationItem or DidItem
-    $objTrunk = …
+    $objTrunk = ...
 
     //Create an form item
     $objForm = new ItemForm($objTrunk);
@@ -334,7 +646,7 @@ try {
     $response = $objController->createItems("997766554", 3, $objForm);
 
     // Get Item id from the response
-    $intItemId = response->item_id;
+    $intItemId = $response->item_id;
     ...
 
 } catch (APIException $e) {
@@ -362,7 +674,93 @@ object(stdClass)#15 (6) {
 }
 ```
 
-## 9. Checkout a Cart
+## 24. Get the cart items list
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the list of items from the cart 7 for account "997766554" using filter (page = 1) and (limit = 10) default values
+    $objResponse = $objController->getItems("997766554", 7);
+    $arrItem = $objResponse->data->results;
+    
+    // Get the list of items using filter (page = 2) and (limit = 5)
+    $objResponse = $objController->getItems("997766554", 7, 2, 5);
+    $arrItem = $objResponse->data->results;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 25. Delete the cart items list
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete the list of items from the cart 7 for account "997766554"
+    $objController->deleteItems("997766554", 7);
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 26. Get a cart item
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the items from the cart 7 for account "997766554" with id equal 9
+    $objResponse = $objController->getItem("997766554", 7, 9);
+    $objItem = $objResponse->data;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 27. Delete a cart item
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the items from the cart 7 for account "997766554" with id equal 9
+    $objResponse = $objController->getItem("997766554", 7, 9);
+    $objItem = $objResponse->data;
+    
+    // Check the item type ('TRUNK', 'DID' or 'LOCATION')
+    if($objItem->item_type == 'TRUNK')
+    {
+        // Delete the item with id equal 9 from the cart 7 for account "997766554"
+        $objController->deleteItem("997766554", 7, 9);
+    }
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 28. Checkout a Cart
 
 ```php
 try {
@@ -426,5 +824,195 @@ object(stdClass)#17 (5) {
   }
   ["account_number"]=>
   string(9) "997766554"
+}
+```
+
+## 29. Get the list of cdr request for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the list of cdr request for account "997766554" using filter (page = 1) and (limit = 10) default values
+    $objResponse = $objController->getCdrs("997766554");
+    $arrCDR = $objResponse->data->results;
+    
+    // Get the list of cdr request for account "997766554" using filter (page = 2) and (limit = 5)
+    $objResponse = $objController->getCdrs("997766554", 2, 5);
+    $arrCDR = $objResponse->data->results;
+    
+    // Get the list of cdr request for account "997766554" using filter (page = 1) and (limit = 2) 
+    // and filter (service_type = "ORIGINATION")
+    $objResponse = $objController->getCdrs("997766554", 1, 2, "service_type::ORIGINATION");
+    $arrCDR = $objResponse->data->results;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 30. Create a cdr for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Create a cdr for account "997766554", user id 2 and service type "TERMINATION"
+    // Service type could be "ORIGINATION" or "TERMINATION"
+    $objCDR = new Cdrs("2", "TERMINATION", "2016-01-13", "2016-01-13");
+    $objForm = new CdrForm($objCDR);
+    
+    // Save cdr object
+    $objCDR = $objController->createCdrs("997766554", $objForm);
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 31. Delete the list of cdr request for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete the cdrs list for account "997766554"
+    $objController->deleteCdrs("997766554");
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 32. Delete a cdr for an account by id
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete the cdrs for account "997766554" with id 2
+    $objController->deleteCdrById("997766554", 2);
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 33. Get the list of numbers (Dids) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the Dids list for account "997766554" using filter (page = 1) and (limit = 10) default values
+    $objResponse = $objController->getDids("997766554");
+    $arrDid = $objResponse->data->results;
+    
+    // Get the Dids list for account "997766554" using filter (page = 1) and (limit = 5)
+    // and filter (region_handle::FL)
+    $objResponse = $objController->getDids("997766554", 1, 5, "region_handle::FL");
+    $arrDid = $objResponse->data->results;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 34. Delete the list of numbers (Dids) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete the Dids list for account "997766554"
+    $objController->deleteDids("997766554");
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 35. Get a telephone number (Did) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the Did for account "997766554" with number "13211234567"
+    $objResponse = $objController->getTelephoneNumber("997766554", "13211234567");
+    $objDid = $objResponse->data;
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 36. Update a telephone numbers (Dids) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Get the Dids list for account "997766554" using filter (page = 1) and (limit = 10) default values
+    $objRouting = new RoutingBase(
+                               "load-balanced",
+                               array(new Endpoint("108.188.149.101", "maxChannels=10"))
+                               );
+    $objTelephoneNumber = new TelephoneNumber(4, "102.225.231.41", "My new did alias", 5, $objRouting);
+    $objTelephoneNumberForm = new TelephoneNumberForm($objTelephoneNumber);
+    $objController->updateTelephoneNumber("997766554", "13211234567", $objTelephoneNumberForm);
+    
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 36. Delete a telephone numbers (Dids) for an account
+
+```php
+try {
+
+    // Create an AccountsController
+    $objController = new AccountsController();
+
+    // Delete Dids for account "997766554" with number "13211234567"
+    $objController->deleteTelephoneNumber("997766554", "13211234567");
+    
+    ...
+
+} catch (APIException $e) {
+    ...
 }
 ```

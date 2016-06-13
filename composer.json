@@ -1,16 +1,16 @@
 {
-    "name": "apimatic/magictelecomapi",
+    "name": "magictelecom/magictelecomapi",
     "type": "library",
     "description": "Magic Telecom API",
     "keywords": ["Magic Telecom API","API","SDK"],
-    "homepage": "https://apimatic.io",
+    "homepage": "https://www.magictelecom.com/",
     "license": "MIT",
     "authors": [
         {
-            "name": "Zeeshan @ APIMATIC",
-            "email": "zeeshan@apimatic.io",
-            "homepage": "https://github.com/apimatic",
-            "role": "Developer"
+            "name": "Alain Hernandez Lopez",
+            "email": "alain@voxbeam.com",
+            "homepage": "https://www.magictelecom.com/",
+            "role": "Software Architect"
         }
     ],
     "repositories": [
@@ -30,5 +30,13 @@
         "psr-4": {
             "MagicTelecomAPILib\\": "src/"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/Localphone/DidBundle/issues"
     }
 }
