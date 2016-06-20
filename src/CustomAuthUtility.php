@@ -18,7 +18,17 @@ class CustomAuthUtility {
     public static function appendCustomAuthParams($request)
     {
         $arrHeaders = $request->__get('headers');
-        $arrAuthHeader = array("X-WSSE" => self::generateWSSEHeader(Configuration::$USERNAME, Configuration::$APITOKEN));
+        if (isset(Configuration::$USERNAME) && isset(Configuration::$APITOKEN)) 
+        {
+            var_dump("X-WSSE");
+            $arrAuthHeader = array("X-WSSE" => self::generateWSSEHeader(Configuration::$USERNAME, Configuration::$APITOKEN));
+        }
+        elseif(isset (Configuration::$APITOKEN))
+        {
+            var_dump("X-Auth-Token");
+            $arrAuthHeader = array("X-Auth-Token" => Configuration::$APITOKEN);
+        }
+        
         
         $arrHeaders = array_merge($arrHeaders, $arrAuthHeader);
         

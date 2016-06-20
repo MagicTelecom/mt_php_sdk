@@ -9,7 +9,10 @@ namespace MagicTelecomAPILib;
 
 class Configuration {
     //The base Uri for API calls
-    public static $BASEURI = 'https://api.magictelecom.com';
-    public static $USERNAME = 'user@magictelecom.com';
-    public static $APITOKEN = '3l239fjshgshldw89323h2hdshsljdns056bm656jdbf3';
+    public static $BASEURI = 'http://bundles.magictelecom.dev/app_dev.php';
+    //The username for API Auth. I you specify username "X-WSSE" auth method gonna be used, 
+    //if not, "X-Auth-Token" will be used.
+//    public static $USERNAME = 'admin@magictelecom.com';
+    //The API Token for authentication
+    public static $APITOKEN = 'thisismysupperduppersecrettoken';
 }
