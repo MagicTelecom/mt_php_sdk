@@ -18,33 +18,9 @@ class CustomAuthUtility {
     public static function appendCustomAuthParams($request)
     {
         $arrHeaders = $request->__get('headers');
-        if (isset(Configuration::$USERNAME) && isset(Configuration::$APITOKEN)) 
-        {
-            var_dump("X-WSSE");
-            $arrAuthHeader = array("X-WSSE" => self::generateWSSEHeader(Configuration::$USERNAME, Configuration::$APITOKEN));
-        }
-        elseif(isset (Configuration::$APITOKEN))
-        {
-            var_dump("X-Auth-Token");
-            $arrAuthHeader = array("X-Auth-Token" => Configuration::$APITOKEN);
-        }
-        
-        
+        $arrAuthHeader = array("X-Auth-Token" => Configuration::$APITOKEN);
         $arrHeaders = array_merge($arrHeaders, $arrAuthHeader);
         
     	$request->__set('headers', $arrHeaders);
-    }
-
-    public static function generateWSSEHeader($strUsername, $strPassword)
-    {
-        $strNonce = sha1(uniqid(null, true).time());
-        $objTimestamp = new \DateTime();
-        $strTimestamp = $objTimestamp->format(\DateTime::ATOM);
-
-        $strDigest = base64_encode(sha1($strNonce.$strTimestamp.$strPassword, true));
-
-        $strHeader = 'UsernameToken Username="'.$strUsername.'", PasswordDigest="'.$strDigest.'", Nonce="'.$strNonce.'", Created="'.$strTimestamp.'"';
-
-        return $strHeader;
     }
 }
