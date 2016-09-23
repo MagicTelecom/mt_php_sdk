@@ -2832,5 +2832,132 @@ class AccountsController {
 
         return $response->body;
     }
+	
+	/**
+     * Allow clients to cancel an specific order item
+     * @param  string     $accountNumber      Required parameter: Account number
+     * @param  string     $orderId            Required parameter: Order id
+     * @param  string     $itemId             Required parameter: Item id
+     * @return void response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function deleteOrderItem (
+                $accountNumber,
+                $orderId,
+                $itemId) 
+    {
+        //the base uri for api requests
+        $queryBuilder = Configuration::$BASEURI;
+        
+		//prepare query string for API call
+        $queryBuilder = $queryBuilder.'/accounts/{account_number}/orders/{order_id}/items/{item_id}';
+
+		//process optional query parameters
+        APIHelper::appendUrlWithTemplateParameters($queryBuilder, array (
+            'account_number' => $accountNumber,
+            'order_id'       => $orderId,
+            'item_id'        => $itemId,
+            ));
+			
+        //validate and preprocess url
+        $queryUrl = APIHelper::cleanUrl($queryBuilder);
+
+        //prepare headers
+        $headers = array (
+            'user-agent'       => 'APIMATIC 2.0'
+        );
+
+        //prepare API request
+        $request = Unirest::delete($queryUrl, $headers);
+
+        //append custom auth authorization headers
+        CustomAuthUtility::appendCustomAuthParams($request);
+
+        //and invoke the API call request to fetch the response
+        $response = Unirest::getResponse($request);
+
+        //Error handling using HTTP status codes
+        if ($response->code == 401) {
+            throw new APIException('You are not authenticated', 401, $response->body);
+        }
+
+        else if ($response->code == 403) {
+            throw new APIException('This action needs a valid WSSE header', 403, $response->body);
+        }
+
+        else if ($response->code == 404) {
+            throw new APIException('Resource not found', 404, $response->body);
+        }
+
+        else if ($response->code == 400) {
+            throw new APIException('Http bad request', 400, $response->body);
+        }
+
+        else if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
+            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
+        }
+    }
+        
+    /**
+     * Allow clients to cancel a specific order.
+     * @param  string     $accountNumber      Required parameter: Account number
+     * @param  string     $orderId            Required parameter: Order Id
+     * @return void response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function deleteOrder (
+                $accountNumber,
+                $orderId) 
+    {
+		//the base uri for api requests
+        $queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $queryBuilder = $queryBuilder.'/accounts/{account_number}/orders/{order_id}';
+
+        //process optional query parameters
+        APIHelper::appendUrlWithTemplateParameters($queryBuilder, array (
+            'account_number' => $accountNumber,
+            'order_id'       => $orderId,
+            ));
+
+        //validate and preprocess url
+        $queryUrl = APIHelper::cleanUrl($queryBuilder);
+
+        //prepare headers
+        $headers = array (
+            'user-agent'       => 'APIMATIC 2.0'
+        );
+
+        //prepare API request
+        $request = Unirest::delete($queryUrl, $headers);
+
+        //append custom auth authorization headers
+        CustomAuthUtility::appendCustomAuthParams($request);
+
+        //and invoke the API call request to fetch the response
+        $response = Unirest::getResponse($request);
+		
+        //Error handling using HTTP status codes
+        if ($response->code == 401) {
+            throw new APIException('You are not authenticated', 401, $response->body);
+        }
+
+        else if ($response->code == 403) {
+            throw new APIException('This action needs a valid WSSE header', 403, $response->body);
+        }
+
+        else if ($response->code == 404) {
+            throw new APIException('Resource not found', 404, $response->body);
+        }
+
+        else if ($response->code == 400) {
+            throw new APIException('Http bad request', 400, $response->body);
+        }
+
+        else if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
+            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
+        }
+    }
         
 }
