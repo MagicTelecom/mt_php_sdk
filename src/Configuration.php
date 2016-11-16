@@ -9,7 +9,7 @@ namespace MagicTelecomAPILib;
 
 class Configuration {
     //The base Uri for API calls
-    public static $BASEURI = 'http://bundles.magictelecom.dev/app_dev.php';
+    public static $BASEURI = 'https://api.magictelecom.com';
 
     //The API Token for authentication
     public static $APITOKEN = 'thisismysupperduppersecrettoken';
