@@ -850,7 +850,7 @@ try {
     // Create an AccountsController
     $objController = new AccountsController();
 
-1    // Get the list of cdr request for account "997766554" using filter (page = 1) and (limit = 10) default values
+    // Get the list of cdr request for account "997766554" using filter (page = 1) and (limit = 10) default values
     $objResponse = $objController->getCdrs("997766554");
     $arrCDR = $objResponse->data->results;
     
@@ -885,7 +885,7 @@ try {
     
     // Save cdr object
     $objCDR = $objController->createCdrs("997766554", $objForm);
-3    
+    
     ...
 
 } catch (APIException $e) {
