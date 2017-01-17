@@ -266,7 +266,7 @@ try {
     $objController = new AccountsController();
 
     // Fill a access token as not active
-    $objAccessToken = new Token(false);
+    $objAccessToken = new Token('false');
     $objForm = new TokenForm($objAccessToken);
     
     // Updating the access token "b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3" for account "997766554" as not active
