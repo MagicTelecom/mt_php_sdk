@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "11b493b32da99e122f8d21a4afd041fa",
-    "content-hash": "772176f3f13bfcc115f27a2818d5683b",
+    "content-hash": "62db0417b6c855d296d30e9310ae1ad3",
     "packages": [
         {
             "name": "apimatic/unirest-php",
@@ -13,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apimatic/unirest-php.git",
-                "reference": "4deef6435ad57d1895bfba6039fa3cc78d269b78"
+                "reference": "ab48fe3322b275a27de3ff8d786be19d16fe01d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apimatic/unirest-php/zipball/4deef6435ad57d1895bfba6039fa3cc78d269b78",
-                "reference": "4deef6435ad57d1895bfba6039fa3cc78d269b78",
+                "url": "https://api.github.com/repos/apimatic/unirest-php/zipball/ab48fe3322b275a27de3ff8d786be19d16fe01d7",
+                "reference": "ab48fe3322b275a27de3ff8d786be19d16fe01d7",
                 "shasum": ""
             },
             "require": {
@@ -40,8 +39,18 @@
                 "MIT"
             ],
             "authors": [
-                "Mashape <opensource@mashape.com> (https://www.mashape.com)",
-                "APIMATIC <zeeshan@apimatic.io> (https://apimatic.io)"
+                {
+                    "name": "Mashape",
+                    "email": "opensource@mashape.com",
+                    "homepage": "https://www.mashape.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "APIMATIC",
+                    "email": "opensource@apimatic.io",
+                    "homepage": "https://apimatic.io",
+                    "role": "Developer"
+                }
             ],
             "description": "Unirest PHP",
             "homepage": "https://github.com/apimatic/unirest-php",
@@ -53,10 +62,10 @@
                 "rest"
             ],
             "support": {
-                "email": "zeeshan@apimatic.io",
-                "source": "https://github.com/apimatic/unirest-php/tree/master"
+                "email": "opensource@apimatic.io",
+                "source": "https://github.com/apimatic/unirest-php/tree/1.3.1"
             },
-            "time": "2015-10-30 10:55:48"
+            "time": "2016-09-01 05:59:13"
         }
     ],
     "packages-dev": [],

@@ -10,11 +10,6 @@ namespace MagicTelecomAPILib\Models;
 use JsonSerializable;
 
 class Cdrs implements JsonSerializable {
-    /**
-     * TODO: Write general description for this property
-     * @param string $userId public property
-     */
-    protected $userId;
 
     /**
      * TODO: Write general description for this property
@@ -43,12 +38,11 @@ class Cdrs implements JsonSerializable {
      */
     public function __construct()
     {
-        if(4 == func_num_args())
+        if(3 == func_num_args())
         {
-            $this->userId       = func_get_arg(0);
-            $this->serviceType  = func_get_arg(1);
-            $this->startDate    = func_get_arg(2);
-            $this->endDate      = func_get_arg(3);
+            $this->serviceType  = func_get_arg(0);
+            $this->startDate    = func_get_arg(1);
+            $this->endDate      = func_get_arg(2);
         }
     }
 
@@ -97,7 +91,6 @@ class Cdrs implements JsonSerializable {
     public function jsonSerialize()
     {
         $json = array();
-        $json['user_id']      = $this->userId;
         $json['service_type'] = $this->serviceType;
         $json['start_date']   = $this->startDate;
         $json['end_date']     = $this->endDate;
