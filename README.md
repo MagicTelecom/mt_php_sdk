@@ -266,7 +266,7 @@ try {
     $objController = new AccountsController();
 
     // Fill a access token as not active
-    $objAccessToken = new Token(false);
+    $objAccessToken = new Token('false');
     $objForm = new TokenForm($objAccessToken);
     
     // Updating the access token "b3086c8ef1d4ee975d55b7fbce1e5a4eb893d6d3" for account "997766554" as not active
@@ -795,7 +795,8 @@ object(stdClass)#17 (5) {
   string(28) "1234567899000dfhdfhdf1234eee"
   ["created"]=>
   string(24) "2016-03-11T21:16:25+0000"
-  ["order_id"]=>
+
+["order_id"]=>
   string(1) "2"
   ["_items"]=>
   array(1) {
@@ -822,12 +823,26 @@ object(stdClass)#17 (5) {
       int(7)
     }
   }
-  ["account_number"]=>
+1  ["account_number"]=>
   string(9) "997766554"
 }
 ```
 
-## 29. Get the list of cdr request for an account
+## 29. Get Order status
+
+```php
+try {
+
+    $intOrderId = ...    
+    $response = $objController->getOrder("997766554", $intOrderId);
+    $strStatus = $response->data->status; 
+    
+} catch (APIException $e) {
+    ...
+}
+```
+
+## 30. Get the list of cdr request for an account
 
 ```php
 try {
@@ -855,7 +870,7 @@ try {
 }
 ```
 
-## 30. Create a cdr for an account
+## 31. Create a cdr for an account
 
 ```php
 try {
@@ -878,7 +893,7 @@ try {
 }
 ```
 
-## 31. Delete the list of cdr request for an account
+## 32. Delete the list of cdr request for an account
 
 ```php
 try {
@@ -896,7 +911,7 @@ try {
 }
 ```
 
-## 32. Delete a cdr for an account by id
+## 33. Delete a cdr for an account by id
 
 ```php
 try {
@@ -914,7 +929,7 @@ try {
 }
 ```
 
-## 33. Get the list of numbers (Dids) for an account
+## 34. Get the list of numbers (Dids) for an account
 
 ```php
 try {
@@ -938,7 +953,7 @@ try {
 }
 ```
 
-## 34. Delete the list of numbers (Dids) for an account
+## 35. Delete the list of numbers (Dids) for an account
 
 ```php
 try {
@@ -956,7 +971,7 @@ try {
 }
 ```
 
-## 35. Get a telephone number (Did) for an account
+## 36. Get a telephone number (Did) for an account
 
 ```php
 try {
@@ -975,7 +990,7 @@ try {
 }
 ```
 
-## 36. Update a telephone numbers (Dids) for an account
+## 37. Update a telephone numbers (Dids) for an account
 
 ```php
 try {
@@ -999,7 +1014,7 @@ try {
 }
 ```
 
-## 36. Delete a telephone numbers (Dids) for an account
+## 38. Delete a telephone numbers (Dids) for an account
 
 ```php
 try {
