@@ -878,9 +878,9 @@ try {
     // Create an AccountsController
     $objController = new AccountsController();
 
-    // Create a cdr for account "997766554", user id 2 and service type "TERMINATION"
+    // Create a cdr for account "997766554" for a service type "TERMINATION"
     // Service type could be "ORIGINATION" or "TERMINATION"
-    $objCDR = new Cdrs("2", "TERMINATION", "2016-01-13", "2016-01-13");
+    $objCDR = new Cdrs("TERMINATION", "2016-01-13", "2016-01-13");
     $objForm = new CdrForm($objCDR);
     
     // Save cdr object
@@ -998,7 +998,7 @@ try {
     // Create an AccountsController
     $objController = new AccountsController();
 
-    // Get the Dids list for account "997766554" using filter (page = 1) and (limit = 10) default values
+    // Create the routing to be updated
     $objRouting = new RoutingBase(
                                "load-balanced",
                                array(new Endpoint("108.188.149.101", "maxChannels=10"))
