@@ -9,7 +9,7 @@ namespace MagicTelecomAPILib;
 
 class Configuration {
     //The base Uri for API calls
-    public static $BASEURI = 'https://api.magictelecom.com';
+    public static $BASEURI = 'https://sandbox.api.magictelecom.com';
 
     //The API Token for authentication
     public static $APITOKEN = 'f7538ed1c9d85e20c4318348feee2579d62f4525';

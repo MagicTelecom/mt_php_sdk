@@ -249,7 +249,7 @@ try {
 //    $objResponse = $objController->getCdrs("11");
 //    $arrCDR = $objResponse->data->results;
     
-    $objController->deleteTelephoneNumber("11", "551123911436");
+//    $objController->deleteTelephoneNumber("11", "551123911436");
     
 //    $objResponse = $objController->getDids("11");
 //    $arrDid = $objResponse->data->results;
@@ -260,6 +260,13 @@ try {
 //    $total = count($arrDid);
 //    
 //    var_dump($total);
+    
+    $objDidsProductsController = new MagicTelecomAPILib\Controllers\DidsProductsController();
+    
+    $objLocations = $objDidsProductsController->getLocations(1, 100, "country_iso2::US|region_handle::OR");
+    $count = count($objLocations->data->results);
+    
+    var_dump($count);
 	
 } catch (APIException $e) {
     //var_dump($e->getMessage());
