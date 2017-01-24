@@ -587,7 +587,7 @@ try {
                                     "US"
                                  );
 
-    // Create Location Item for the trunk id 23
+    // Create Location Item for the trunk 23
     $objLocation = new LocationItem("ORLANDO__407___FL", 3, "sms,fax", "STANDARD", 23, objCallerLocation);
 
     // Setting the item type
@@ -617,9 +617,25 @@ try {
                                     "US"
                                  );
 
-    // Creating a Did Item for trunk id 5
+    // Creating a Did Item for trunk 5
     $objDid = new DidItem("14701234567", 5, "STANDARD", $objCallerLocation);
     $objDid->__set("itemType", "DID");
+    ...
+
+} catch (APIException $e) {
+    ...
+}
+```
+
+#### Create Trunk Channels Item
+
+```php
+try {
+    ...
+    
+    // Create a Trunk Channels Item with 2 additional channels for trunk 5
+    $objChannelsItem = new MagicTelecomAPILib\Models\TrunkChannelsItem(2, 5);
+    $objChannelsItem->__set("itemType", "TRUNK_CHANNELS");
     ...
 
 } catch (APIException $e) {
